@@ -9,6 +9,13 @@
 #include <string.h>
 #include "descriptor.h"
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class ApplicationUsageDescriptor : public Descriptor
@@ -30,4 +37,7 @@ protected:
 	unsigned char usage_type;
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif

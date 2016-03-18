@@ -9,6 +9,13 @@
 #include <string.h>
 #include "descriptor.h"
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class SimpleApplicationLocationDescriptor : public Descriptor
@@ -22,7 +29,7 @@ public:
 	virtual void PrintDescriptor();
 	
 	/* Interface to encode (setter) */
-	void SetInitialPath(char *init_path)
+	void SetInitialPath(const char *init_path)
 	{
 		memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
 		snprintf(initial_path_bytes, sizeof(initial_path_bytes), "%s", init_path);
@@ -36,4 +43,7 @@ protected:
 	char initial_path_bytes[256];
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

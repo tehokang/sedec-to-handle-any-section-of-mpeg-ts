@@ -8,7 +8,7 @@
 	printf("\033[37;32m"); \
 	printf("[%-20s]", __FUNCTION__); \
 	printf ( fmt, ##__VA_ARGS__);printf("\033[0m"); \
-	}while(0);
+	}while(0)
 
 #endif
 

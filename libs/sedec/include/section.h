@@ -7,6 +7,15 @@
 
 #include "bit_readwriter.h"
 
+/**
+ * @brief Contains classes to de/encode raw section/table of AIT
+ */
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
 
 class Section  : public BitReadWriter
 {
@@ -52,4 +61,7 @@ protected:
 	unsigned int		section_length;	
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif

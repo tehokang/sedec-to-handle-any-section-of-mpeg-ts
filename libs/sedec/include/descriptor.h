@@ -5,6 +5,13 @@
 #define __DESCRIPTOR_H__
 #define DESCRIPTOR_HEADER_LENGTH 2
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class Descriptor
@@ -53,4 +60,8 @@ public:
 protected:
 	virtual void calcLength(){};
 };
+
+/** @} */
+
+} // end of sedec namespace
 #endif 

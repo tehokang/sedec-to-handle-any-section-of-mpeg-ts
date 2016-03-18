@@ -4,6 +4,13 @@
 #if !defined __DESCRIPTOR_FACTORY_H__
 #define __DESCRIPTOR_FACTORY_H__
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class Descriptor;
 class BitReadWriter;
 
@@ -17,4 +24,7 @@ private:
 	virtual ~DescriptorFactory(){};
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

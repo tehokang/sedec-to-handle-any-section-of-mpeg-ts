@@ -6,7 +6,15 @@
 
 #include <list>
 #include <string.h>
+#include <stdlib.h>
 #include "descriptor.h"
+
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
 
 class BitReadWriter;
 
@@ -37,11 +45,12 @@ public:
 	void SetServiceBoundFlag(int value) { service_bound_flag = value;}
 	void SetVisibility(int value) { visibility = value;}
 	void SetApplicationPriority(int value) { application_priority = value;}
-	void SetTransportProtocolLabel(char *value)
+	void SetTransportProtocolLabel(const char *value)
 	{
-		memset(transport_protocol_label, 0x00, sizeof(transport_protocol_label));
-		snprintf(transport_protocol_label, sizeof(transport_protocol_label),"%s", value);
-		transport_protocol_label_length = strlen((char*)transport_protocol_label);
+		transport_protocol_label[0] = atoi(value);
+		transport_protocol_label_length = 1;
+		//memset(transport_protocol_label, 0x00, sizeof(transport_protocol_label));
+		//snprintf(transport_protocol_label, sizeof(transport_protocol_label),"%s", value);
 	}
 
 
@@ -70,4 +79,7 @@ protected:
 	int transport_protocol_label_length;
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

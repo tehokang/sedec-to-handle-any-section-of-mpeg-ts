@@ -13,6 +13,15 @@
 #include "section_common.h"
 using namespace std;
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
+class Descriptor;
+
 class AITSectionTranscoder : public AITSection 
 {
 public:
@@ -22,47 +31,38 @@ public:
 	virtual ~AITSectionTranscoder();
 
 	/* Scenario Interfaces to encode (setter) */
-	void SetApplicationUrl(char *base_url, char *init_path);	
-	void SetApplicationVersion(int major, int minor, int micro);
+	void SetApplicationUrl(const char *base_url, const char *init_path);
+	void SetApplicationVersion(const int major, const int minor, const int micro);
+	void SetApplicationId(const int value);
+	void SetOrganizationId(const int value);
+	void SetRemoteConnection(const int value);
+	void SetProtocolId(const int value);
+	void SetOriginalNetworkId(const int value);
+	void SetTransportStreamId(const int value);
+	void SetServiceId(const int value);
+	void SetComponentTag(const int value);
 
 	/* Scenario Interfaces to encode (getter) */
 	void GetApplicationVersion(int &major, int &minor, int &micro);
 	void GetApplicationUrl(const char **base_url, const char **init_path);
 
 	/* Interfaces to encode (setter) */
-	void SetTestApplicationFlag(int value) { test_application_flag = value;}
-	void SetApplicationType(int value) { application_type = value;}
-	void SetVersionNumber(int value) { version_number = value;}
-	void SetCurrentNextIndicator(int value) { current_next_indicator = value;}
-	void SetSectionNumber(int value) { section_number = value;}
-	void SetLastSectionNumber(int value) { last_section_number = value;} 
-	void SetCommonDescriptors(list<Descriptor*> value) 
-	{ 
-		common_descriptors_length = 0;
-		for (list<Descriptor*>::iterator it=value.begin();
-			it != value.end(); ++it)
-		{
-			Descriptor *desc = (Descriptor*)*it;
-			common_descriptors_length+=desc->GetDescriptorLength();
-		}
-		m_common_descriptors = value;
-	}
-	void SetApplications(list<Application*> value) 
-	{ 
-		application_loop_length = 0;
-		for (list<Application*>::iterator it=value.begin();
-				it != value.end(); ++it)
-		{
-			Application *app = (Application*)*it;
-			application_loop_length += app->GetApplicationLength();
-		}		
-		m_applications = value;
-	}
-
-
+	void SetTestApplicationFlag(const int value) { test_application_flag = value;}
+	void SetApplicationType(const int value) { application_type = value;}
+	void SetVersionNumber(const int value) { version_number = value;}
+	void SetCurrentNextIndicator(const int value) { current_next_indicator = value;}
+	void SetSectionNumber(const int value) { section_number = value;}
+	void SetLastSectionNumber(const int value) { last_section_number = value;}
+	void SetTransportProtocolLabel(const char *label);
+	void SetCommonDescriptors(const list<Descriptor*> value);
+	void SetApplications(const list<Application*> value);
 
 private:
 	Descriptor* findDescriptor(list<Descriptor*>descriptors, Descriptor::DESCRIPTOR_TAG tag);
 };
+
+/** @} */
+
+} // end of sedec namespace
 
 #endif 

@@ -20,7 +20,7 @@ TARGET_VER	:= $(TARGET).$(SECODEC_LIBVER)
 
 OBJS_DIR	= zobj
 DEPFILES	= $(OBJS:.o=.d)
-OBJS		= $(C_SRC:.c=.o) $(CXX_SRC:.cpp=.o)
+OBJS		= $(C_SRC:.c=.o) $(CXX_SRC:.cc=.o)
 
 CXXFLAGS	= $(CFLAGS) -stdlib=libstdc++
 CFLAGS		= -fPIC -O -Wall -Wno-unused-function -fomit-frame-pointer -MMD -I$(SECODEC_LIBINC) $(__DBG)
@@ -30,27 +30,27 @@ CLEANLIST	= $(TARGET) $(TARGET_VER) $(OBJS) $(DEPFILES) $(OBJS_DIR)
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-%.o: %.cpp
+%.o: %.cc
 	$(CXX) -c $(CXXFLAGS) $< -o $@
 
 C_SRC		:= 
 
 CXX_SRC		:= \
-			common/bit_readwriter.cpp \
-			common/descriptor.cpp \
-			common/descriptor_factory.cpp \
-			common/section.cpp \
-			descriptors/application_descriptor.cpp \
-			descriptors/application_name_descriptor.cpp \
-			descriptors/application_usage_descriptor.cpp \
-			descriptors/application_recording_descriptor.cpp \
-			descriptors/simple_application_location_descriptor.cpp \
-			descriptors/simple_application_boundary_descriptor.cpp \
-			descriptors/transport_protocol_descriptor.cpp \
-			descriptors/parental_rating_descriptor.cpp \
-			descriptors/application.cpp \
-			sections/ait_section.cpp \
-			sections/ait_section_transcoder.cpp \
+			common/bit_readwriter.cc \
+			common/descriptor.cc \
+			common/descriptor_factory.cc \
+			common/section.cc \
+			descriptors/application_descriptor.cc \
+			descriptors/application_name_descriptor.cc \
+			descriptors/application_usage_descriptor.cc \
+			descriptors/application_recording_descriptor.cc \
+			descriptors/simple_application_location_descriptor.cc \
+			descriptors/simple_application_boundary_descriptor.cc \
+			descriptors/transport_protocol_descriptor.cc \
+			descriptors/parental_rating_descriptor.cc \
+			descriptors/application.cc \
+			sections/ait_section.cc \
+			sections/ait_section_transcoder.cc \
 			
 ### Targets
 all: $(OBJS)

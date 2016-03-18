@@ -9,6 +9,13 @@
 #include <string.h>
 #include "descriptor.h"
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class ApplicationRecordingDescriptor : public Descriptor
@@ -58,4 +65,7 @@ protected:
 	unsigned char __private[256];
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif

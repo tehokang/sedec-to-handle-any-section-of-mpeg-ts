@@ -8,6 +8,13 @@
 #include <string.h>
 #include "descriptor.h"
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class TransportProtocolDescriptor : public Descriptor
@@ -21,7 +28,7 @@ public:
 	virtual void PrintDescriptor();
 
 	/* Interface to encode (setter) */
-	void SetBaseUrl(char *base_url)
+	void SetBaseUrl(const char *base_url)
 	{
 		memset(&channel_transport, 0x00, sizeof(Channeltransport));
 		channel_transport.URL_base_length = strlen(base_url);
@@ -89,9 +96,9 @@ protected:
 		char URL_extension_byte[256];
 	};
 	Channeltransport channel_transport;
-
-
-
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

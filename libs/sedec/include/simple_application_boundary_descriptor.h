@@ -8,6 +8,13 @@
 #include <string.h>
 #include "descriptor.h"
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class SimpleApplicationBoundaryDescriptor : public Descriptor
@@ -46,4 +53,7 @@ protected:
 
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

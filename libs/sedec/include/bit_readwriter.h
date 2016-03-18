@@ -5,6 +5,13 @@
 #if !defined(__BIT_READ_WRITER__)
 #define __BIT_READ_WRITER__
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter
 {
 public:
@@ -24,8 +31,10 @@ private:
 	int		m_nPos;
 	int		m_nSize;
 	int		m_nOutCnt;
-	//unsigned char	m_byBuffer;
 	unsigned int m_byBuffer;
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

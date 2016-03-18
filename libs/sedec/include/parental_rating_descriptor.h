@@ -9,6 +9,13 @@
 #include <string.h>
 #include "descriptor.h"
 
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class BitReadWriter;
 
 class ParentalRatingDescriptor : public Descriptor
@@ -30,4 +37,7 @@ protected:
 	int m_parent_rating_count;
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif

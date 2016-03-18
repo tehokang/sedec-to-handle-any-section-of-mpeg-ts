@@ -6,10 +6,18 @@
 #define __APPLICATION_H__
 
 #include <list>
+using namespace std;
+
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class Descriptor;
 class BitReadWriter;
 
-using namespace std;
 class Application
 {
 public:
@@ -55,4 +63,7 @@ private:
 	int m_application_length;
 };
 
+/** @} */
+
+} // end of sedec namespace
 #endif 

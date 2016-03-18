@@ -9,6 +9,14 @@ using namespace std;
 #include <list>
 
 #include "section.h"
+
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
 class Application;
 class Descriptor;
 
@@ -22,16 +30,16 @@ public:
 	virtual void PrintSection();
 
 	/* Interfaces to get information (e.g. getter) */
-	int GetTestApplicationFlag() { return test_application_flag;}
-	unsigned int GetApplicationType() { return application_type;}
-	unsigned int GetVersionNumber(){ return version_number; } 
-	int GetCurrentNextIndicator(){return current_next_indicator;}
-	unsigned int GetSectionNumber() { return section_number;}
-	unsigned int GetLastSectionNumber() { return last_section_number;}
-	unsigned int GetCommonDescriptorLength() { return common_descriptors_length;}
-	list<Descriptor*> GetCommonDescriptors() { return m_common_descriptors;}
-	unsigned int GetApplicationLoopLength() { return application_loop_length;}
-	list<Application*> GetApplications() { return m_applications;}
+	int GetTestApplicationFlag() const { return test_application_flag;}
+	unsigned int GetApplicationType() const { return application_type;}
+	unsigned int GetVersionNumber() const { return version_number; }
+	int GetCurrentNextIndicator() const {return current_next_indicator;}
+	unsigned int GetSectionNumber() const { return section_number;}
+	unsigned int GetLastSectionNumber() const { return last_section_number;}
+	unsigned int GetCommonDescriptorLength() const { return common_descriptors_length;}
+	list<Descriptor*> GetCommonDescriptors() const { return m_common_descriptors;}
+	unsigned int GetApplicationLoopLength() const { return application_loop_length;}
+	list<Application*> GetApplications() const { return m_applications;}
 
 protected:
 	int test_application_flag;
@@ -51,5 +59,9 @@ private:
 	virtual void CalcSectionLength();
 	virtual void decode();
 };
+
+/** @} */
+
+} // end of sedec namespace
 
 #endif 
