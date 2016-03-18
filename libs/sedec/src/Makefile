@@ -22,7 +22,7 @@ OBJS_DIR	= zobj
 DEPFILES	= $(OBJS:.o=.d)
 OBJS		= $(C_SRC:.c=.o) $(CXX_SRC:.cc=.o)
 
-CXXFLAGS	= $(CFLAGS) -stdlib=libstdc++
+CXXFLAGS	= $(CFLAGS) -lstdc++ -std=c++11
 CFLAGS		= -fPIC -O -Wall -Wno-unused-function -fomit-frame-pointer -MMD -I$(SECODEC_LIBINC) $(__DBG)
 CLEANLIST	= $(TARGET) $(TARGET_VER) $(OBJS) $(DEPFILES) $(OBJS_DIR)
 
