@@ -20,206 +20,217 @@ namespace sedec
 
 AITSectionTranscoder::AITSectionTranscoder()
 {
-	m_section_name = strdup("AITSectionTranscoder");
+    m_section_name = strdup("AITSectionTranscoder");
 }
 
 AITSectionTranscoder::AITSectionTranscoder(unsigned char *raw_buffer)
-: AITSection(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
+    : AITSection(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
 
 }
 
 
 AITSectionTranscoder::AITSectionTranscoder(unsigned char *raw_buffer, unsigned int raw_length) 
-: AITSection(raw_buffer, raw_length)
+    : AITSection(raw_buffer, raw_length)
 {
 	
 }
 
 AITSectionTranscoder::~AITSectionTranscoder()
 {
-	if(m_section_name) {
-		free(m_section_name);
-		m_section_name = NULL;
-	}
+    if(m_section_name) {
+        free(m_section_name);
+        m_section_name = NULL;
+    }
 }
 
 Descriptor* AITSectionTranscoder::findDescriptor(list<Descriptor*>descriptors, 
-												Descriptor::DESCRIPTOR_TAG tag)
+        Descriptor::DESCRIPTOR_TAG tag)
 {
-	for (std::list<Descriptor*>::iterator it=descriptors.begin();
-		it != descriptors.end(); ++it)
-	{
-		Descriptor *desc = (Descriptor*)*it;
-		if( tag == desc->GetDescriptorTag())
-			return desc;
-	}
-	return NULL;
+    for (std::list<Descriptor*>::iterator it=descriptors.begin();
+        it != descriptors.end(); ++it)
+    {
+        Descriptor *desc = (Descriptor*)*it;
+        if( tag == desc->GetDescriptorTag())
+            return desc;
+    }
+    return NULL;
 }
 
 void AITSectionTranscoder::SetApplicationUrl(const char *base_url, const char *init_path)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(), 
-									Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
-		((SimpleApplicationLocationDescriptor*)desc)->SetInitialPath(init_path);
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
+        ((SimpleApplicationLocationDescriptor*)desc)->SetInitialPath(init_path);
 
-		desc = findDescriptor(app->GetDescriptors(), 
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetBaseUrl(base_url);
-	}
+        desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetBaseUrl(base_url);
+    }
+}
+
+void AITSectionTranscoder::SetApplicationVisibility(const int value)
+{
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::APPLICATION_DESCRIPTOR);
+        ((ApplicationDescriptor*)desc)->SetVisibility(value);
+    }
 }
 
 void AITSectionTranscoder::SetApplicationVersion(const int major, const int minor, const int micro)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(), 
-											Descriptor::APPLICATION_DESCRIPTOR);
-		((ApplicationDescriptor*)desc)->SetApplicationVersion(major, minor, micro);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+        it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::APPLICATION_DESCRIPTOR);
+        ((ApplicationDescriptor*)desc)->SetApplicationVersion(major, minor, micro);
+    }
 }
 
 void AITSectionTranscoder::GetApplicationVersion(int &major, int &minor, int &micro)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(), 
-											Descriptor::APPLICATION_DESCRIPTOR);
-		((ApplicationDescriptor*)desc)->GetApplicationVersion(&major, &minor, &micro);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::APPLICATION_DESCRIPTOR);
+        ((ApplicationDescriptor*)desc)->GetApplicationVersion(&major, &minor, &micro);
+    }
 }
 
 void AITSectionTranscoder::GetApplicationUrl(const char **base_url, const char **init_path)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(), 
-											Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
-		*init_path = ((SimpleApplicationLocationDescriptor*)desc)->GetInitialPath();
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
+        *init_path = ((SimpleApplicationLocationDescriptor*)desc)->GetInitialPath();
 
-		desc = findDescriptor(app->GetDescriptors(), 
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		*base_url = ((TransportProtocolDescriptor*)desc)->GetBaseUrl();
-	}
-
+        desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        *base_url = ((TransportProtocolDescriptor*)desc)->GetBaseUrl();
+    }
 }
 
 void AITSectionTranscoder::SetTransportProtocolLabel(const char *label)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(), 
-											Descriptor::APPLICATION_DESCRIPTOR);
-		((ApplicationDescriptor*)desc)->SetTransportProtocolLabel(label);
-		
-		desc = findDescriptor(app->GetDescriptors(), 
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetTransportProtocolLabel((unsigned char)atoi(label));
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::APPLICATION_DESCRIPTOR);
+        ((ApplicationDescriptor*)desc)->SetTransportProtocolLabel(label);
+
+        desc = findDescriptor(app->GetDescriptors(),
+                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetTransportProtocolLabel((unsigned char)atoi(label));
+    }
 }
 
 void AITSectionTranscoder::SetApplicationId(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		app->SetApplicationId(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        app->SetApplicationId(value);
+    }
 }
 
 void AITSectionTranscoder::SetOrganizationId(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-			it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		app->SetOrganizationId(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+            it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        app->SetOrganizationId(value);
+    }
 }
 
 void AITSectionTranscoder::SetProtocolId(int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-				it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(),
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetProtocolId(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+                it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetProtocolId(value);
+    }
 }
 
 void AITSectionTranscoder::SetRemoteConnection(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-				it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(),
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetRemoteConnection(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+                it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetRemoteConnection(value);
+    }
 }
 
 void AITSectionTranscoder::SetOriginalNetworkId(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-				it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(),
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetOriginalNetworkId(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+                it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetOriginalNetworkId(value);
+    }
 }
 
 void AITSectionTranscoder::SetTransportStreamId(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-				it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(),
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetTransportStreamId(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+                it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetTransportStreamId(value);
+    }
 }
 
 void AITSectionTranscoder::SetServiceId(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-				it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(),
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetServiceId(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+                it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetServiceId(value);
+    }
 }
 
 void AITSectionTranscoder::SetComponentTag(const int value)
 {
-	for (std::list<Application*>::iterator it=m_applications.begin();
-				it != m_applications.end(); ++it)
-	{
-		Application *app = (Application*)*it;
-		Descriptor *desc = findDescriptor(app->GetDescriptors(),
-								Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
-		((TransportProtocolDescriptor*)desc)->SetComponentTag(value);
-	}
+    for (std::list<Application*>::iterator it=m_applications.begin();
+                it != m_applications.end(); ++it)
+    {
+        Application *app = (Application*)*it;
+        Descriptor *desc = findDescriptor(app->GetDescriptors(),
+                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+        ((TransportProtocolDescriptor*)desc)->SetComponentTag(value);
+    }
 }
 
 void AITSectionTranscoder::SetCommonDescriptors(list<Descriptor*> value)

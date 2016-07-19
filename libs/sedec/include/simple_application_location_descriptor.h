@@ -20,27 +20,27 @@ class BitReadWriter;
 
 class SimpleApplicationLocationDescriptor : public Descriptor
 {
-public:	
-	SimpleApplicationLocationDescriptor();
-	SimpleApplicationLocationDescriptor(BitReadWriter *rw);
-	virtual ~SimpleApplicationLocationDescriptor();
+public:
+    SimpleApplicationLocationDescriptor();
+    SimpleApplicationLocationDescriptor(BitReadWriter *rw);
+    virtual ~SimpleApplicationLocationDescriptor();
 
-	virtual void WriteDescriptor(BitReadWriter* rw);
-	virtual void PrintDescriptor();
-	
-	/* Interface to encode (setter) */
-	void SetInitialPath(const char *init_path)
-	{
-		memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
-		snprintf(initial_path_bytes, sizeof(initial_path_bytes), "%s", init_path);
-	}
+    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void PrintDescriptor();
 
-	/* Interface to decode (getter) */
-	char* GetInitialPath(){ return initial_path_bytes;}
+    /* Interface to encode (setter) */
+    void SetInitialPath(const char *init_path)
+    {
+        memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
+        snprintf(initial_path_bytes, sizeof(initial_path_bytes), "%s", init_path);
+    }
+
+    /* Interface to decode (getter) */
+    char* GetInitialPath(){ return initial_path_bytes;}
 
 protected:
-	virtual void calcLength();
-	char initial_path_bytes[256];
+    virtual void calcLength();
+    char initial_path_bytes[256];
 };
 
 /** @} */

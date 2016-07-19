@@ -14,14 +14,14 @@ namespace sedec
 
 ApplicationUsageDescriptor::ApplicationUsageDescriptor()
 {
-	descriptor_tag = APPLICATION_USAGE_DESCRIPTOR;
-	descriptor_length = 0;
-	usage_type = 0;
+    descriptor_tag = APPLICATION_USAGE_DESCRIPTOR;
+    descriptor_length = 0;
+    usage_type = 0;
 }
 
 ApplicationUsageDescriptor::ApplicationUsageDescriptor(BitReadWriter *rw) : Descriptor(rw)
 {
-	usage_type = rw->Read_On_Buffer(8);
+    usage_type = rw->Read_On_Buffer(8);
 }
 
 ApplicationUsageDescriptor::~ApplicationUsageDescriptor()
@@ -31,21 +31,21 @@ ApplicationUsageDescriptor::~ApplicationUsageDescriptor()
 
 void ApplicationUsageDescriptor::PrintDescriptor()
 {
-	SECTION_DEBUG("\n");
-	SECTION_DEBUG("\tdescriptor_tag : 0x%02x (application_usage_descriptor)\n", descriptor_tag);
-	SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
-	SECTION_DEBUG("\tusage_type : 0x%x \n", usage_type);
-	SECTION_DEBUG("\n");
+    SECTION_DEBUG("\n");
+    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (application_usage_descriptor)\n", descriptor_tag);
+    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    SECTION_DEBUG("\tusage_type : 0x%x \n", usage_type);
+    SECTION_DEBUG("\n");
 }
 
 void ApplicationUsageDescriptor::calcLength()
 {
-	descriptor_length = 1;
+    descriptor_length = 1;
 }
 
 void ApplicationUsageDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
-	rw->Write_On_Buffer(usage_type, 8);
+    rw->Write_On_Buffer(usage_type, 8);
 }
 
 } // end of sedec namespace

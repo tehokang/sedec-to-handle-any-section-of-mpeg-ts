@@ -21,20 +21,20 @@ class BitReadWriter;
 class ApplicationUsageDescriptor : public Descriptor
 {
 public:
-	ApplicationUsageDescriptor();
-	ApplicationUsageDescriptor(BitReadWriter *rw);
-	virtual ~ApplicationUsageDescriptor();
+    ApplicationUsageDescriptor();
+    ApplicationUsageDescriptor(BitReadWriter *rw);
+    virtual ~ApplicationUsageDescriptor();
 
-	virtual void WriteDescriptor(BitReadWriter* rw);
-	virtual void PrintDescriptor();
+    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void PrintDescriptor();
 
-	void SetUsageType(int value) { usage_type = value;}
-	unsigned char GetUsageType() { return usage_type;}
-	
+    void SetUsageType(int value) { usage_type = value;}
+    unsigned char GetUsageType() { return usage_type;}
+
 protected:
-	virtual void calcLength();
+    virtual void calcLength();
 
-	unsigned char usage_type;
+    unsigned char usage_type;
 };
 
 /** @} */

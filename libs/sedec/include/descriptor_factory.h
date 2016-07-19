@@ -17,11 +17,11 @@ class BitReadWriter;
 class DescriptorFactory
 {
 public:
-	static Descriptor* CreateDescriptor(BitReadWriter *rw);
+    static Descriptor* CreateDescriptor(BitReadWriter *rw);
 
 private:	
-	DescriptorFactory(){};
-	virtual ~DescriptorFactory(){};
+    DescriptorFactory(){};
+    virtual ~DescriptorFactory(){};
 };
 
 /** @} */
