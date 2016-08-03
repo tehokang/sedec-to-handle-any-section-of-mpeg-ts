@@ -12,7 +12,7 @@ User application can achieve all of information that AIT has.
 
 # How to build
 Build tree are compose of followings:
-<pre>
+```
 .
 ├── CMakeLists.txt
 ├── LICENSE
@@ -21,17 +21,17 @@ Build tree are compose of followings:
 ├── examples (This has samples of decoder/encoder)
 ├── release (Directory to release to cross platforms)
 └── sedec(Sedec sources)
-</pre>
+```
 
 You can meet library(libsedec) in build/out directory after following build command.<br>
 And thus there are examples, e.g. decoder, encoder.
 
-<pre>
+```
 #mkdir build
 #cd build
 #cmake ..
 #make
-</pre>
+```
 
 # How to port your project
 Please follow below examples 
@@ -40,7 +40,7 @@ Please follow below examples
 ## Decoder
 There are executable binary to decode AIT(table, not section) in build/out
 You can output result of AIT information like following.
-<pre>
+```
 #cd build/out
 #decoder_example ./example_ait.dump
 [main                ]***************************
@@ -500,16 +500,16 @@ You can output result of AIT information like following.
 [PrintSection        ]======================================
 [PrintSection        ]checksum_CRC32 : 0x1483f568
 [PrintSection        ]======================================
-</pre>
+```
 
 ## Encoder
 Thie example encoder's real operation is to trascode from original AIT to modified AIT.  <br>
 The way to run same as decoder example, but it has to check sources how example can transcode original AIT.
-<pre>
+```
 #encoder_example original_ait
 #decoder_example modified_ait // you can see information if transcoding work out well.
-</pre>
+```
 
 # TODO
-Class diagram <br>
-Block diagram
+<del>Class diagram </del> : Not need to make, cus of simple architecture <br>
+<del>Block diagram </del> : Uploaded
