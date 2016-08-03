@@ -38,7 +38,6 @@ And thus there are examples, e.g. decoder, encoder.
 Please follow below examples 
 
 # Examples
-## Encoder
 ## Decoder
 There are executable binary to decode AIT(table, not section) in build/out
 You can output result of AIT information like following.
@@ -502,6 +501,14 @@ You can output result of AIT information like following.
 [PrintSection        ]======================================
 [PrintSection        ]checksum_CRC32 : 0x1483f568
 [PrintSection        ]======================================
+</pre>
+
+## Encoder
+Thie example encoder's real operation is to trascode from original AIT to modified AIT.  <br>
+The way to run same as decoder example, but it has to check sources how example can transcode original AIT.
+<pre>
+#encoder_example original_ait
+#decoder_example modified_ait // you can see information if transcoding work out well.
 </pre>
 
 # TODO
