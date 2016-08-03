@@ -24,7 +24,9 @@ Build tree are compose of followings:
 └── sedec(Sedec sources)
 </pre>
 
-You can meet library(libsedec) in build/out directory after following build command
+You can meet library(libsedec) in build/out directory after following build command.<br>
+And thus there are examples, e.g. decoder, encoder.
+
 <pre>
 #mkdir build
 #cd build
