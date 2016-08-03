@@ -511,5 +511,5 @@ The way to run same as decoder example, but it has to check sources how example 
 ```
 
 # TODO
-<del>Class diagram </del> : Not need to make, cus of simple architecture <br>
-<del>Block diagram </del> : Uploaded
+<del>Class diagram </del> : Done <br>
+<del>Block diagram </del> : Not need to make, cus of simple architecture
