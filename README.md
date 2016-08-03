@@ -7,9 +7,9 @@ And output is abstractive AIT object.
 User application can achieve all of information that AIT has.
 
 # Architecture
-## - Block diagram
+## - Block diagram (ASAP)
 
-## - Class diagram
+## - Class diagram (ASAP)
 
 # How to build
 Build tree are compose of followings:
@@ -42,4 +42,5 @@ Please follow below examples
 ## Decoder
 
 # TODO
-Nothing to do yet (201608)
+Class diagram
+Block diagram
