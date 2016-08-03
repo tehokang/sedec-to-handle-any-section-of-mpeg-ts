@@ -42,5 +42,5 @@ Please follow below examples
 ## Decoder
 
 # TODO
-Class diagram
+Class diagram <br>
 Block diagram
