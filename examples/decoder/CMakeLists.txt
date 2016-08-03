@@ -26,4 +26,10 @@ link_directories(
 
 add_executable(${project_name} ${sources})
 
+add_custom_command(
+	TARGET ${project_name}
+	POST_BUILD
+	COMMAND cp -f ${rootdir}/example_ait.dump ${CMAKE_BINARY_DIR}
+)
+
 target_link_libraries(${project_name} sedec)
