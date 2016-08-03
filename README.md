@@ -7,9 +7,8 @@ And output is abstractive AIT object.
 User application can achieve all of information that AIT has.
 
 # Architecture
-## - Block diagram (ASAP)
-
 ## - Class diagram (ASAP)
+![screenshot](https://github.com/tehokang/sedec/blob/master/sedec_class_diagram.png)
 
 # How to build
 Build tree are compose of followings:
