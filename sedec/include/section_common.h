@@ -5,10 +5,10 @@
 //#define SECTION_DEBUG	printf
 #define SECTION_DEBUG(fmt, ...) \
     do { \
-        printf("\033[37;32m"); \
-        printf("[%-20s]", __FUNCTION__); \
-        printf ( fmt, ##__VA_ARGS__); \
-        printf("\033[0m"); \
+        fprintf(stderr, "\033[37;32m"); \
+        fprintf(stderr, "[%-20s]", __FUNCTION__); \
+        fprintf(stderr, fmt, ##__VA_ARGS__); \
+        fprintf(stderr, "\033[0m"); \
     } while(0)
 
 #endif
