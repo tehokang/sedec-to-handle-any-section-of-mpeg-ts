@@ -45,6 +45,8 @@ void ApplicationUsageDescriptor::calcLength()
 
 void ApplicationUsageDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
+    Descriptor::WriteDescriptor(rw);
+
     rw->Write_On_Buffer(usage_type, 8);
 }
 

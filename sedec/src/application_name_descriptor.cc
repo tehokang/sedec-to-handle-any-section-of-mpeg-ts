@@ -73,10 +73,7 @@ void ApplicationNameDescriptor::calcLength()
 
 void ApplicationNameDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
-    calcLength();
-
-    rw->Write_On_Buffer(descriptor_tag, 8);
-    rw->Write_On_Buffer(descriptor_length, 8);
+    Descriptor::WriteDescriptor(rw);
 
     if( 0 < descriptor_length )
     {

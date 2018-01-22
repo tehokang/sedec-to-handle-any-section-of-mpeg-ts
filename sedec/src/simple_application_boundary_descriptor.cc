@@ -77,8 +77,7 @@ void SimpleApplicationBoundaryDescriptor::calcLength()
 
 void SimpleApplicationBoundaryDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
-    rw->Write_On_Buffer(descriptor_tag, 8);
-    rw->Write_On_Buffer(descriptor_length, 8);
+    Descriptor::WriteDescriptor(rw);
 
     rw->Write_On_Buffer(boundary_extension_count, 8);
     for(int i=0;i<boundary_extension_count;i++)

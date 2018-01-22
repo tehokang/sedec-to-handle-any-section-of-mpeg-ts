@@ -24,7 +24,7 @@ public:
     int GetDescriptorLength();
     int GetDescriptorTag();
 
-    virtual void WriteDescriptor(BitReadWriter* rw)=0;
+    virtual void WriteDescriptor(BitReadWriter* rw);
     virtual void PrintDescriptor()=0;
 
     static enum DESCRIPTOR_TAG

@@ -54,8 +54,8 @@ void ConnectionRequirementDescriptor::calcLength()
 
 void ConnectionRequirementDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
-    rw->Write_On_Buffer(descriptor_tag, 8);
-    rw->Write_On_Buffer(descriptor_length, 8);
+    Descriptor::WriteDescriptor(rw);
+    
     rw->Write_On_Buffer(0x7f, 7);
     rw->Write_On_Buffer(IP_connection_requirement_flag, 1);
 }

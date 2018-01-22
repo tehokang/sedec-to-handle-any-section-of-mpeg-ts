@@ -118,6 +118,8 @@ void ApplicationRecordingDescriptor::calcLength()
 
 void ApplicationRecordingDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
+    Descriptor::WriteDescriptor(rw);
+
     rw->Write_On_Buffer(scheduled_recording_flag, 1);
     rw->Write_On_Buffer(trick_mode_aware_flag, 1);
     rw->Write_On_Buffer(time_shift_flag, 1);

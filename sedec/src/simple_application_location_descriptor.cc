@@ -54,9 +54,8 @@ void SimpleApplicationLocationDescriptor::calcLength()
 }
 
 void SimpleApplicationLocationDescriptor::WriteDescriptor(BitReadWriter *rw)
-{
-    rw->Write_On_Buffer(descriptor_tag, 8);
-    rw->Write_On_Buffer(descriptor_length, 8);
+{   
+    Descriptor::WriteDescriptor(rw);
 
     if( 0<descriptor_length )
     {

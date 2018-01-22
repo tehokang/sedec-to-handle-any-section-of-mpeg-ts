@@ -85,8 +85,8 @@ void ApplicationDescriptor::calcLength()
 
 void ApplicationDescriptor::WriteDescriptor(BitReadWriter *rw)
 {
-    rw->Write_On_Buffer(descriptor_tag, 8);
-    rw->Write_On_Buffer(descriptor_length, 8);
+    Descriptor::WriteDescriptor(rw);
+    
     rw->Write_On_Buffer(application_profiles_length, 8);
     for(int i=application_profiles_length;i>0;i-=5)
     {

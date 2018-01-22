@@ -58,7 +58,9 @@ void ParentalRatingDescriptor::calcLength()
 }
 
 void ParentalRatingDescriptor::WriteDescriptor(BitReadWriter *rw)
-{
+{   
+    Descriptor::WriteDescriptor(rw);
+
     for(int i=0;i<m_parent_rating_count;i++)
     {
         rw->Write_On_Buffer(country_code[i], 24);

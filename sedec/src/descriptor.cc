@@ -38,6 +38,12 @@ int Descriptor::GetDescriptorLength()
     return descriptor_length + 2;
 }
 
+void Descriptor::WriteDescriptor(BitReadWriter* rw)
+{
+    rw->Write_On_Buffer(descriptor_tag, 8);
+    rw->Write_On_Buffer(descriptor_length, 8);
+}
+
 UnknownDescriptor::UnknownDescriptor()
 {
 
