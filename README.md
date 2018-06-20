@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tehokang/sedec.svg?token=tukzKYpBaAzTzcPeGfcg&branch=master)](https://travis-ci.com/tehokang/sedec)
+
 # What is sedec?
 The sedec(=SEction coDEC) is a library to encode/decode and also transcode section(ISO-13818),<br>
 Especiall for AIT(=Application Information Table) of HbbTV 1.5/2.0.
