@@ -2,7 +2,7 @@
 
 # What is sedec?
 The sedec(=SEction coDEC) is a library to encode/decode and also transcode section(ISO-13818),<br>
-Especiall for AIT(=Application Information Table) of HbbTV 1.5/2.0.
+Especially for AIT(=Application Information Table) of HbbTV 1.5/2.0.
 
 The input of sedec is raw AIT table(Not section to be seperated) <br>
 And output is abstractive AIT object.
@@ -25,7 +25,7 @@ Build tree are compose of followings:
 └── sedec(Sedec sources)
 ```
 
-You can meet library(libsedec) in build/out directory after following build command.<br>
+You can meet library(libsedec) in build/out directory after following build commands.<br>
 And thus there are examples, e.g. decoder, encoder.
 
 ```
@@ -40,7 +40,7 @@ Please follow below examples
 
 # Examples
 ## Decoder
-There are executable binary to decode AIT(table, not section) in build/out
+There is executable binary to decode AIT(table, not section) in build/out
 You can output result of AIT information like following.
 ```
 #cd build/out
@@ -505,7 +505,7 @@ You can output result of AIT information like following.
 ```
 
 ## Encoder
-Thie example encoder's real operation is to trascode from original AIT to modified AIT.  <br>
+This encoder's real operation is to trascode from original AIT to modified AIT.  <br>
 The way to run same as decoder example, but it has to check sources how example can transcode original AIT.
 ```
 #encoder_example original_ait
